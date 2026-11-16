@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<title>Redirecting…</title>
+</head>
+<body>
+<p id="m">Redirecting…</p>
+<script id="maria-links" type="application/json">{"cheesy-rotini-pasta-with-garlic-butter-sauce-and-ground-beef":"https://lifewithtom.com/cheesy-rotini-pasta-with-garlic-butter-sauce-and-ground-beef/","cheesy-taco-potatoes":"https://lifewithtom.com/cheesy-taco-potatoes/","chunky-ground-beef-and-potato-soup":"https://lifewithtom.com/chunky-ground-beef-and-potato-soup/","classic-ground-beef-soup":"https://lifewithtom.com/classic-ground-beef-soup/","creamy-rotel-pasta-with-ground-beef":"https://lifewithtom.com/creamy-rotel-pasta-with-ground-beef/"}</script>
+<script>
+(function () {
+  var links = JSON.parse(document.getElementById("maria-links").textContent);
+  var parts = location.search.replace(/^\?/, "").split("&");
+  var slug = "";
+  try { slug = decodeURIComponent(parts.shift() || ""); } catch (e) {}
+  slug = slug.toLowerCase().replace(/\/+$/, "");
+  var to = links[slug];
+  if (!to) { document.title = "Page not found"; document.getElementById("m").textContent = "Page not found."; return; }
+  var extra = parts.filter(Boolean).join("&");
+  if (extra) {
+    var h = to.indexOf("#"), hash = h < 0 ? "" : to.slice(h), u = h < 0 ? to : to.slice(0, h);
+    to = u + (u.indexOf("?") < 0 ? "?" : "&") + extra + hash;
+  }
+  location.replace(to);
+})();
+</script>
+</body>
+</html>
